@@ -5,133 +5,156 @@
 CSS
 ------------------------------------------------------------------------------------------------------------------------
 {%- endcomment -%}{% style %}
-  .Click-here {
-    cursor: pointer;
-    background-image: linear-gradient(190deg, #f83600 0%, #fee140 100%);
-    color: #fff;
-    width: 180px;
-    text-align: center;
-    font-size: 16px;
-    padding: 18px 0;
-    margin: 0 auto;
-    transition: background-image 3s ease-in-out;
-  }
-  .Click-here:hover {
-    transition: background-image 3s ease-in-out;
-    background-image: linear-gradient(90deg, #fee140 0%, #f83600 100%);
-  }
-  .custom-model-main {
-    text-align: center;
-    overflow: hidden;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0; /* z-index: 1050; */
-    -webkit-overflow-scrolling: touch;
-    outline: 0;
-    opacity: 0;
-    -webkit-transition: opacity 0.15s linear, z-index 0.15;
-    -o-transition: opacity 0.15s linear, z-index 0.15;
-    transition: opacity 0.15s linear, z-index 0.15;
-    z-index: -1;
-    overflow-x: hidden;
-    overflow-y: auto;
+  @import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+  @import url('http://fontawesome.io/assets/font-awesome/css/font-awesome.css');
+  * {
+    margin: 0;
+    padding: 0;
   }
 
-  .model-open {
-    z-index: 99999;
-    opacity: 1;
-    overflow: hidden;
+  .layout {
+    padding: 2%;
   }
-  .custom-model-inner {
-    -webkit-transform: translate(0, -25%);
-    -ms-transform: translate(0, -25%);
-    transform: translate(0, -25%);
-    -webkit-transition: -webkit-transform 0.3s ease-out;
-    -o-transition: -o-transform 0.3s ease-out;
-    transition: -webkit-transform 0.3s ease-out;
-    -o-transition: transform 0.3s ease-out;
-    transition: transform 0.3s ease-out;
-    transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
-    display: inline-block;
-    vertical-align: middle;
-    width: 600px;
-    margin: 30px auto;
-    max-width: 97%;
+  .open-popup {
+    cursor: pointer;
+    color: #888;
   }
-  .custom-model-wrap {
-    display: block;
+  .overlay {
     width: 100%;
-    position: relative;
-    background-color: #fff;
-    border: 1px solid #999;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 6px;
-    -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
-    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
-    background-clip: padding-box;
-    outline: 0;
-    text-align: left;
-    padding: 20px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    max-height: calc(100vh - 70px);
-    overflow-y: auto;
-  }
-  .model-open .custom-model-inner {
-    -webkit-transform: translate(0, 0);
-    -ms-transform: translate(0, 0);
-    transform: translate(0, 0);
-    position: relative;
-    z-index: 999;
-  }
-  .model-open .bg-overlay {
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 99;
-  }
-  .bg-overlay {
-    background: rgba(0, 0, 0, 0);
-    height: 100vh;
-    width: 100%;
+    height: 100%;
     position: fixed;
+    z-index: 100;
     left: 0;
     top: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 0;
-    -webkit-transition: background 0.15s linear;
-    -o-transition: background 0.15s linear;
-    transition: background 0.15s linear;
+    text-align: center;
+    white-space: nowrap;
+    display: none;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
   }
-  .close-btn {
+  .overlay .popup {
+    background: #fff;
+    display: inline-block;
+    white-space: normal;
+    text-align: left;
+    vertical-align: middle;
+    position: relative;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    margin-top: -50px;
+  }
+  .overlay::before,
+  .overlay::after {
+    height: 100%;
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .overlay.shown {
+    display: block;
+  }
+  .overlay.shown .popup {
+    margin-top: 0;
+  }
+  .overlay--bg-black {
+    background: rgba(0, 0, 0, 0.7);
+  }
+  .overlay--bg-white {
+    background: rgba(255, 255, 255, 0.7);
+  }
+  .popup-close {
     position: absolute;
-    right: 0;
-    top: -30px;
+    width: 20px;
+    height: 20px;
+    display: block;
+    top: 8px;
+    right: 5px;
     cursor: pointer;
-    z-index: 99;
-    font-size: 30px;
+    opacity: 0.7;
+  }
+  .popup-close::before,
+  .popup-close::after {
+    content: '';
+    position: absolute;
+    display: block;
+    height: 2px;
+    margin-top: -1px;
+    top: 50%;
+    left: 3px;
+    right: 3px;
+    background: #555;
+  }
+  .popup-close::before {
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  .popup-close::after {
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+  .popup-close:hover {
+    opacity: 1;
+  }
+  .pop_head {
+    padding: 9px 10px;
+    background: #4EB5E6;
     color: #fff;
+    font-weight: 500;
   }
-
-  @media screen and (min-width:800px) {
-    .custom-model-main:before {
-      content: "";
-      display: inline-block;
-      height: auto;
-      vertical-align: middle;
-      margin-right: -0px;
-      height: 100%;
-    }
+  .pop_body {
+    font-size: 14px;
+    padding: 10px;
+    border-bottom: 1px solid #E0E0E0;
+    overflow: auto;
+    max-height: 350px;
   }
-  @media screen and (max-width:799px) {
-    .custom-model-inner {
-      margin-top: 45px;
-    }
+  .text-right {
+    text-align: right;
+  }
+  .pop_footer {
+    padding: 5px 10px;
+  }
+  .btn_yes {
+    background: #81CE84;
+    padding: 5px 15px;
+    border: none;
+    font-family: inherit;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    outline: none;
+  }
+  .btn_no {
+    background: #FD7E7E;
+    padding: 5px 15px;
+    border: none;
+    font-family: inherit;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    outline: none;
   }
 {% endstyle %}
 
+<script>
+  $('.open-popup').on('click', function() {
+    $('.overlay').addClass('shown');
+  });
+
+  $('.popup-close').on('click', function() {
+    $('.overlay').removeClass('shown');
+  });
+  $('.btn_yes').on('click', function() {
+    $('.overlay').removeClass('shown');
+  });
+  $(document).on('keyup', function(event) {
+    if (event.which == 27) { // esc
+      $('.overlay').removeClass('shown');
+    };
+  });
+</script>
 
 
 <style>
@@ -281,19 +304,23 @@ LIQUID
             custom code start
             {% endcomment %}
 
-            <div class="Click-here" id="clickhere">Click Here</div>
-            <div class="custom-model-main">
-              <div class="custom-model-inner">
-                <div class="close-btn">×</div>
-                <div class="custom-model-wrap">
-                  <div class="pop-up-content-wrap">
-                    Content Here
-                    <br>sjkdfnskdljfhksjdnvckjdsbfvdjhbv
-
+            <div class="layout">
+              <span class="open-popup">Open popup</span>
+            </div>
+            <div class="overlay overlay--bg-black">
+              <section class="popup" style="width: 50%;">
+                <span class="popup-close"></span>
+                <h3 class="pop_head">Popup Heading</h3>
+                <div class="pop_body">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla deserunt consectetur ratione id tempore laborum laudantium facilis reprehenderit beatae dolores ipsum nesciunt alias iusto dicta eius itaque blanditiis modi velit.</p>
+                </div>
+                <div class="pop_footer text-right">
+                  <div>
+                    <button class="btn_yes">Yes</button>
+                    <button class="btn_no">No</button>
                   </div>
                 </div>
-              </div>
-              <div class="bg-overlay"></div>
+              </section>
             </div>
 
             {% comment %}
@@ -313,14 +340,7 @@ LIQUID
   </media-with-text>
 </div>
 
-<script>
-  $(".Click-here").on('click', function() {
-    $(".custom-model-main").addClass('model-open');
-  });
-  $(".close-btn, .bg-overlay").click(function() {
-    $(".custom-model-main").removeClass('model-open');
-  });
-</script>
+
 
 {% schema %}
   {
