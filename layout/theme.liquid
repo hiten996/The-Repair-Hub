@@ -1,27 +1,37 @@
 {%- comment -%}
 ------------------------------------------------------------------------------------------------------------------------
 NOTE TO DEVELOPERS: welcome to Impact theme! We hope that you will enjoy editing this theme as much as we did for
-  developing it. We have put a lot of work to make this theme as developer friendly as possible by offering you
-  hooks to integrate into critical parts of the theme. You will find the complete technical documentation (including
-  all events, dependencies...) in the "documentation.txt" file, located in the Assets folder.
+developing it. We have put a lot of work to make this theme as developer friendly as possible by offering you
+hooks to integrate into critical parts of the theme. You will find the complete technical documentation (including
+all events, dependencies...) in the "documentation.txt" file, located in the Assets folder.
 ------------------------------------------------------------------------------------------------------------------------
 {%- endcomment -%}
 
 <!doctype html>
 
-<html class="no-js" lang="{{ request.locale.iso_code }}" dir="{% render 'direction' %}">
+<html
+  class="no-js"
+  lang="{{ request.locale.iso_code }}"
+  dir="{% render 'direction' %}">
   <head>
-<!-- Tido Whatsapp Pixel start-->
-<script async src='https://whatsapp.bossapps.co/js/script?shop=trhw-7357.myshopify.com'></script>
-<!-- Tido Whatsapp Pixel ended-->
+    <!-- Tido Whatsapp Pixel start-->
+    <script async src='https://whatsapp.bossapps.co/js/script?shop=trhw-7357.myshopify.com'></script>
+    <!-- Tido Whatsapp Pixel ended-->
 
-
+    <script src="jquery-3.6.4.min.js"></script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, maximum-scale=1.0">
     <meta name="theme-color" content="{{ settings.header_background }}">
 
-    <title>{% if page_title == blank %}{{ shop.name }}{% else %}{{ page_title }}{% if current_page != 1 %} &ndash; {{ 'general.page' | t: page: current_page }}{% endif %}{% endif %}</title>
+    <title>
+      {% if page_title == blank %}
+        {{ shop.name }}
+      {% else %}
+        {{ page_title }}{% if current_page != 1 %}
+          &ndash; {{ 'general.page' | t: page: current_page }}{% endif %}
+      {% endif %}
+    </title>
 
     {%- if page_description -%}
       <meta name="description" content="{{ page_description | escape }}">
@@ -36,15 +46,28 @@ NOTE TO DEVELOPERS: welcome to Impact theme! We hope that you will enjoy editing
 
     {%- comment -%}Few prefetch to increase performance on commonly used third-parties{%- endcomment -%}
     <link rel="preconnect" href="https://cdn.shopify.com">
-    <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    <link
+      rel="preconnect"
+      href="https://fonts.shopifycdn.com"
+      crossorigin>
     <link rel="dns-prefetch" href="https://productreviews.shopifycdn.com">
 
     {%- unless settings.heading_font.system? -%}
-      <link rel="preload" href="{{ settings.heading_font | font_url }}" as="font" type="font/woff2" crossorigin>
+      <link
+        rel="preload"
+        href="{{ settings.heading_font | font_url }}"
+        as="font"
+        type="font/woff2"
+        crossorigin>
     {%- endunless -%}
 
     {%- unless settings.text_font.system? -%}
-      <link rel="preload" href="{{ settings.text_font | font_url }}" as="font" type="font/woff2" crossorigin>
+      <link
+        rel="preload"
+        href="{{ settings.text_font | font_url }}"
+        as="font"
+        type="font/woff2"
+        crossorigin>
     {%- endunless -%}
 
     {%- render 'social-meta-tags' -%}
@@ -68,10 +91,10 @@ NOTE TO DEVELOPERS: welcome to Impact theme! We hope that you will enjoy editing
 
     {%- if request.page_type != 'password' -%}
       {% if template.name == "index" %}
-      {%- section 'announcement-bar' -%}
-        {% else %}
-      {%- section 'shop-announcement-bar' -%}
-        {% endif %}
+        {%- section 'announcement-bar' -%}
+      {% else %}
+        {%- section 'shop-announcement-bar' -%}
+      {% endif %}
       {%- sections 'header-group' -%}
       {%- sections 'overlay-group' -%}
 
@@ -81,12 +104,15 @@ NOTE TO DEVELOPERS: welcome to Impact theme! We hope that you will enjoy editing
     {%- endif -%}
 
     {%- if request.page_type == 'customers/account' or request.page_type == 'customers/order' or request.page_type == 'customers/addresses' -%}
-      
-      
+
+
       {%- section 'account-banner' -%}
     {%- endif -%}
 
-    <main role="main" id="main" class="anchor">
+    <main
+      role="main"
+      id="main"
+      class="anchor">
 
       {{ content_for_layout }}
 
