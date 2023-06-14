@@ -5,81 +5,152 @@
 CSS
 ------------------------------------------------------------------------------------------------------------------------
 {%- endcomment -%}{% style %}
-  /* Hiding and showing the popup div */
+ *,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 
-  .popup_container {
-    position: relative;
-    display: inline-block;
-  }
+/* Page wrapper */
+.wrapper {
+  width: 90%;
+  max-width: 800px;
+  margin: 60px auto;
+  text-align: center;
+}
 
-  .popup_content {
-    display: none;
-    position: absolute;
-  }
+/* Icons */
+.icon {
+  width: 20px;
+  height: 20px;
+}
 
-  .show {
-    display: block;
-  }
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #222;
+  font-weight: 700;
+  font-family: inherit;
+  line-height: 1.333;
+  text-rendering: optimizeLegibility;
+}
 
-  /* Styling the button and the link */
+/* PopUp ($popup) */
+.popup {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+}
 
-  .linkStyle {
-    color: green;
-    padding: 16px;
-    font-size: 16px;
-    cursor: pointer;
-    font-family: verdana;
-    text-decoration: none;
-  }
+.popup.popup-active {
+  visibility: visible;
+}
 
-  .linkStyle:hover,
-  .dropbtn:focus {
-    color: black;
-    text-decoration: underline;
-  }
+.popup-overlay {
+  position: fixed;
+  z-index: 8;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 0.3s, opacity 0.3s;
+}
 
-  .btnPopup {
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-  }
+.popup.popup-active .popup-overlay {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
 
-  .btnPopup:hover,
-  .btnPopup:focus {
-    background-color: #3e8e41;
-  }
+.popup-wrapper {
+  position: absolute;
+  z-index: 9;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  background-color: #fff;
+}
 
+.popup-transition {
+  transition: all 0.3s 0.12s;
+  transform: translate(-40%, -50%);
+  opacity: 0;
+}
 
-  /* styling the popup*/
+.popup.popup-active .popup-transition {
+  transform: translate(-50%, -50%);
+  opacity: 1;
+}
 
-  #popup_content {
-    background-color: #eff5f5;
-    border-left: 3px solid #4CAF50;
-    margin-top: 60px;
-    padding: 50px;
-    width: 200px;
-    font-family: verdana;
-    font-size: 14px;
-  }
+.popup-header,
+.popup-content {
+  padding: 15px;
+}
+
+.popup-header {
+  position: relative;
+  background-color: #fff;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.popup-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1em;
+  color: #aaa;
+  background: none;
+  border: 0;
+}
+
+.popup-close:hover {
+  color: #777;
+}
+
+.popup-heading {
+  font-size: 18px;
+  margin: 0;
+}
+
+.popup-content p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+button.popup-toggle:not(.popup-close) {
+  padding: 10px 20px;
+  border: solid 1px #eee;
+  border-radius: 35px;
+  background-color: #eee;
+  transition: 0.3s;
+}
+
+button.popup-toggle:hover {
+  background-color: #ddd;
+  cursor: pointer;
+}
+
 {% endstyle %}
 
 <script>
-  const clickBtn = document.getElementById("clickBtn");
-  const popup = document.getElementById("popup");
-  const closeBtn = document.getElementById("closeBtn");
-
-  clickBtn.addEventListener('click', () => {
-    popup.style.display = 'block';
+  $(".popup-toggle").on("click", function (e) {
+    e.preventDefault();
+    $(".popup").toggleClass("popup-active");
   });
-  closeBtn.addEventListener('click', () => {
-    popup.style.display = 'none';
-  });
-  popup.addEventListener('click', () => {
-    popup.style.display = 'none';
-  });
+  
 </script>
 
 
@@ -250,19 +321,30 @@ LIQUID
 
 
 
-            <button onclick="showPopup()" class="btnPopup thePopup">Open PopUp</button>
-
-            <a
-              class="linkStyle thePopup"
-              onclick="javascript:showPopup()"
-              href="#"
-              return
-              false;>Open PopUp</a>
-
-            <div class="popup_container">
-
-              <div id="popup_content" class="popup_content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quasi voluptas impedit. Culpa impedit?</div>
-
+            <div class="wrapper">
+              <h1>Simple jQuery PopUp</h1>
+              <button class="popup-toggle">Show PopUp</button>
+            </div>
+            
+            <div class="popup">
+              <div class="popup-overlay"></div>
+              <div class="popup-wrapper popup-transition">
+                <div class="popup-header">
+                  <button class="popup-close popup-toggle">
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" class="icon svg-inline--fa fa-times fa-w-11" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512">
+                      <path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z">
+                      </path>
+                    </svg>
+                  </button>
+                  <h2 class="popup-heading">This is a PopUp</h2>
+                </div>
+            
+                <div class="popup-body">
+                  <div class="popup-content">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit eum delectus, libero, accusantium dolores inventore obcaecati placeat cum sapiente vel laboriosam similique totam id ducimus aperiam, ratione fuga blanditiis maiores.</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
 
