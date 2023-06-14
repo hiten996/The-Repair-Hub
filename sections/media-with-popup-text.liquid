@@ -5,154 +5,96 @@
 CSS
 ------------------------------------------------------------------------------------------------------------------------
 {%- endcomment -%}{% style %}
-  @import url(https://fonts.googleapis.com/css?family=Lato:400,700);
-  @import url('http://fontawesome.io/assets/font-awesome/css/font-awesome.css');
-  * {
-    margin: 0;
-    padding: 0;
-  }
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600 &display=swap');
 
-  .layout {
-    padding: 2%;
-  }
-  .open-popup {
+  button {
+    background-color: rebeccapurple;
+    outline: none;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin: 30px;
+    border-radius: 20px;
+    box-shadow: 1px 6px 12px 0 rgb(0 0 0 / 13%);
     cursor: pointer;
-    color: #888;
+    transition: 0.2s all ease-in-out;
   }
-  .overlay {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    z-index: 100;
-    left: 0;
-    top: 0;
-    text-align: center;
-    white-space: nowrap;
+  button:hover {
+    background-color: orange;
+  }
+  #popup {
     display: none;
-    -webkit-transition: all 0.4s ease;
-    transition: all 0.4s ease;
   }
-  .overlay .popup {
-    background: #fff;
-    display: inline-block;
-    white-space: normal;
-    text-align: left;
-    vertical-align: middle;
-    position: relative;
-    -webkit-transition: all 0.4s ease;
-    transition: all 0.4s ease;
-    margin-top: -50px;
-  }
-  .overlay::before,
-  .overlay::after {
-    height: 100%;
-    content: "";
-    display: inline-block;
-    vertical-align: middle;
-  }
-  .overlay.shown {
-    display: block;
-  }
-  .overlay.shown .popup {
-    margin-top: 0;
-  }
-  .overlay--bg-black {
-    background: rgba(0, 0, 0, 0.7);
-  }
-  .overlay--bg-white {
-    background: rgba(255, 255, 255, 0.7);
-  }
-  .popup-close {
+  .popup-container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(96 95 127 / 70%);
     position: absolute;
-    width: 20px;
-    height: 20px;
-    display: block;
-    top: 8px;
-    right: 5px;
-    cursor: pointer;
-    opacity: 0.7;
+    top: 0;
+    left: 0;
   }
-  .popup-close::before,
-  .popup-close::after {
-    content: '';
-    position: absolute;
-    display: block;
-    height: 2px;
-    margin-top: -1px;
-    top: 50%;
-    left: 3px;
-    right: 3px;
-    background: #555;
+  .popup {
+    background-color: #ffffff;
+    padding: 20px 30px;
+    width: 50%;
+    border-radius: 15px;
   }
-  .popup-close::before {
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
+  .close-popup {
+    display: flex;
+    justify-content: flex-end;
   }
-  .popup-close::after {
-    -webkit-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    transform: rotate(-45deg);
-  }
-  .popup-close:hover {
-    opacity: 1;
-  }
-  .pop_head {
-    padding: 9px 10px;
-    background: #4EB5E6;
+  .close-popup a {
+    font-size: 1.2rem;
+    background-color: rebeccapurple;
     color: #fff;
-    font-weight: 500;
-  }
-  .pop_body {
-    font-size: 14px;
-    padding: 10px;
-    border-bottom: 1px solid #E0E0E0;
-    overflow: auto;
-    max-height: 350px;
-  }
-  .text-right {
-    text-align: right;
-  }
-  .pop_footer {
     padding: 5px 10px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 10px;
+    display: inline-block;
   }
-  .btn_yes {
-    background: #81CE84;
-    padding: 5px 15px;
-    border: none;
-    font-family: inherit;
-    color: #fff;
-    border-radius: 3px;
-    cursor: pointer;
-    outline: none;
+  .popup > h2 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
   }
-  .btn_no {
-    background: #FD7E7E;
+  .popup > p {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  .popup-btn {
+    display: inline-block;
+    text-decoration: none;
+    border: 2px solid rebeccapurple;
     padding: 5px 15px;
-    border: none;
-    font-family: inherit;
+    border-radius: 20px;
+    margin: 10px 0;
+    transition: 0.2s all ease-in;
+  }
+  .popup-btn:hover {
+    background-color: rebeccapurple;
     color: #fff;
-    border-radius: 3px;
-    cursor: pointer;
-    outline: none;
   }
 {% endstyle %}
 
 <script>
-  $('.open-popup').on('click', function() {
-    $('.overlay').addClass('shown');
-  });
+  const clickBtn = document.getElementById("clickBtn");
+  const popup = document.getElementById("popup");
+  const closeBtn = document.getElementById("closeBtn");
 
-  $('.popup-close').on('click', function() {
-    $('.overlay').removeClass('shown');
+  clickBtn.addEventListener('click', () => {
+    popup.style.display = 'block';
   });
-  $('.btn_yes').on('click', function() {
-    $('.overlay').removeClass('shown');
+  closeBtn.addEventListener('click', () => {
+    popup.style.display = 'none';
   });
-  $(document).on('keyup', function(event) {
-    if (event.which == 27) { // esc
-      $('.overlay').removeClass('shown');
-    };
+  popup.addEventListener('click', () => {
+    popup.style.display = 'none';
   });
 </script>
 
@@ -304,23 +246,21 @@ LIQUID
             custom code start
             {% endcomment %}
 
-            <div class="layout">
-              <span class="open-popup">Open popup</span>
-            </div>
-            <div class="overlay overlay--bg-black">
-              <section class="popup" style="width: 50%;">
-                <span class="popup-close"></span>
-                <h3 class="pop_head">Popup Heading</h3>
-                <div class="pop_body">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla deserunt consectetur ratione id tempore laborum laudantium facilis reprehenderit beatae dolores ipsum nesciunt alias iusto dicta eius itaque blanditiis modi velit.</p>
-                </div>
-                <div class="pop_footer text-right">
-                  <div>
-                    <button class="btn_yes">Yes</button>
-                    <button class="btn_no">No</button>
+            <button id="clickBtn">Click Me To See PopUp</button>
+            <div id="popup">
+              <div class="popup-container">
+                <div class="popup">
+                  <div class="close-popup" id="closeBtn">
+                    <a href="#">X</a>
                   </div>
+                  <h2>Custom Popup</h2>
+                  <p>
+                    This is a custom popup. You can just put any content behind it. Also you can apply any custom style
+                    in this popup.
+                  </p>
+                  <a href="#" class="popup-btn">View Details</a>
                 </div>
-              </section>
+              </div>
             </div>
 
             {% comment %}
