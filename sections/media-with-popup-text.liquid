@@ -5,94 +5,65 @@
 CSS
 ------------------------------------------------------------------------------------------------------------------------
 {%- endcomment -%}{% style %}
-  .popup {
+  /* Hiding and showing the popup div */
+
+  .popup_container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .popup_content {
     display: none;
-    position: fixed;
-    padding: 10px;
-    width: 280px;
-    left: 50%;
-    margin-left: -150px;
-    height: 180px;
-    top: 50%;
-    margin-top: -100px;
-    background: #FFF;
-    border: 3px solid #F04A49;
-    z-index: 20;
-  }
-
-  #popup:after {
-    position: fixed;
-    content: "";
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: -2;
-  }
-
-  #popup:before {
     position: absolute;
-    content: "";
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: #FFF;
-    z-index: -1;
   }
 
-  /* Styling buttons & webpage */
+  .show {
+    display: block;
+  }
 
-  button {
-    margin-top: 50px;
-    background-color: rgba(255, 255, 255, 0.3);
-    border: 3px solid #F04A49;
-    color: #F04A49;
-    font-size: 25px;
-    padding: 10px 20px;
+  /* Styling the button and the link */
 
+  .linkStyle {
+    color: green;
+    padding: 16px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: verdana;
+    text-decoration: none;
+  }
+
+  .linkStyle:hover,
+  .dropbtn:focus {
+    color: black;
+    text-decoration: underline;
+  }
+
+  .btnPopup {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btnPopup:hover,
+  .btnPopup:focus {
+    background-color: #3e8e41;
   }
 
 
-  .popupk {
-    display: none;
-    position: fixed;
-    padding: 10px;
-    width: 280px;
-    left: 50%;
-    margin-left: -150px;
-    height: 180px;
-    top: 50%;
-    margin-top: -100px;
-    background: #FFF;
-    border: 3px solid #F04A49;
-    z-index: 20;
-  }
+  /* styling the popup*/
 
-  #popupk:after {
-    position: fixed;
-    content: "";
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: -2;
+  #popup_content {
+    background-color: #eff5f5;
+    border-left: 3px solid #4CAF50;
+    margin-top: 60px;
+    padding: 50px;
+    width: 200px;
+    font-family: verdana;
+    font-size: 14px;
   }
-
-  #popupk:before {
-    position: absolute;
-    content: "";
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: #FFF;
-    z-index: -1;
-  }
-
-  /* Styling buttons & webpage */
 {% endstyle %}
 
 <script>
@@ -150,15 +121,29 @@ CSS
 </style>
 
 <script>
-  $ = function(id) {
-    return document.getElementById(id);
+  // When the user clicks on the button,
+// toggle between hiding and showing the dropdown content
+
+  function showPopup() {
+    event.preventDefault();
+    document.getElementById("popup_content").classList.toggle("show");
+    return false;
   }
 
-  var show = function(id) {
-    $(id).style.display = 'block';
-  }
-  var hide = function(id) {
-    $(id).style.display = 'none';
+// Close the dropdown if the user clicks outside of it
+
+  window.onclick = function(event) {
+    if (! event.target.matches('.thePopup')) {
+
+      var dropdowns = document.getElementsByClassName("popup_content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
   }
 </script>
 
@@ -263,39 +248,23 @@ LIQUID
             custom code start
             {% endcomment %}
 
-            <button
-              class="button"
-              href="#"
-              onclick="show('popup')">Button</button>
 
-            <!-- This is what will be included inside the popup -->
-            <div class="popup" id="popup">
-              <p>This is a popup!</p>
-              <p>Overlay uses
-                <b>:before</b>
-                and
-                <b>:after</b>
-                pseudo-classes.</p>
-              <p>Website will still remain visible behind this popup.</p>
-              <a href="#" onclick="hide('popup')">Close</a>
+
+            <button onclick="showPopup()" class="btnPopup thePopup">Open PopUp</button>
+
+            <a
+              class="linkStyle thePopup"
+              onclick="javascript:showPopup()"
+              href="#"
+              return
+              false;>Open PopUp</a>
+
+            <div class="popup_container">
+
+              <div id="popup_content" class="popup_content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quasi voluptas impedit. Culpa impedit?</div>
+
             </div>
 
-
-            <button
-              class="button"
-              href="#"
-              onclick="show('popupk')">Button</button>
-
-            <div class="popupk" id="popupk">
-              <p>lalalalalal!</p>
-              <p>Overlay uses
-                <b>:before</b>
-                and
-                <b>:after</b>
-                pseudo-classes.</p>
-              <p>Website will still remain visible behind this popup.</p>
-              <a href="#" onclick="hide('popupk')">Close</a>
-            </div>
 
             {% comment %}
             cutomcode end
