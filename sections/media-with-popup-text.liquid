@@ -11,6 +11,13 @@ CSS
     z-index: 100;
   }
 
+  .popup-title {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background: white;
+  }
+
   div#popup {
     margin-block-start: 0;
   }
@@ -224,7 +231,9 @@ LIQUID
 
             <div id="popup" class="popup">
               <div class="popup-content">
-                {%- if block.settings.title != blank -%}
+                <h1 class="popup-title">
+                  {%- if block.settings.title != blank -%}
+                  </h1>
                   <p class="h2">
                     {%- render 'styled-text', content: block.settings.title, gradient: block.settings.text_gradient -%}
                   </p>
