@@ -17,7 +17,11 @@ CSS
     align-items: start;
 
   }
-
+  @media only screen and (max-width: 600px) {
+    .popup-content {
+      margin-block-start: 30%;
+    }
+  }
   .popup-content {
     background-color: #fff;
     padding: 20px;
@@ -27,7 +31,6 @@ CSS
     max-width: 90%;
     max-height: 90%;
     overflow: auto;
-    margin-block-start: 30%;
   }
 
   #close-btn {
