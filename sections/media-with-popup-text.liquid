@@ -206,7 +206,17 @@ LIQUID
             {% endcomment %}
             <button id="popup-trigger">Click here to open the popup</button>
 
-
+            <div id="popup" class="popup">
+              <div class="popup-content">
+                {%- if block.settings.title != blank -%}
+                  <p class="h2">
+                    {%- render 'styled-text', content: block.settings.title, gradient: block.settings.text_gradient -%}
+                  </p>
+                {%- endif -%}
+                {{- block.settings.content -}}
+                <a href="#" id="close-btn">Close</a>
+              </div>
+            </div>
 
             {% comment %}
             cutomcode end
@@ -220,17 +230,7 @@ LIQUID
 
           </div>
         </div>
-        <div id="popup" class="popup">
-          <div class="popup-content">
-            {%- if block.settings.title != blank -%}
-              <p class="h2">
-                {%- render 'styled-text', content: block.settings.title, gradient: block.settings.text_gradient -%}
-              </p>
-            {%- endif -%}
-            {{- block.settings.content -}}
-            <a href="#" id="close-btn">Close</a>
-          </div>
-        </div>
+
 
 
       </div>
