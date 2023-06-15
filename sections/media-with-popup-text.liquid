@@ -11,12 +11,6 @@ CSS
     z-index: 100;
   }
 
-  .popup-title {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    background: white;
-  }
 
   div#popup {
     margin-block-start: 0;
@@ -63,6 +57,10 @@ CSS
     margin-top: 10px;
     color: #333;
     text-decoration: none;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background: white;
   }
 
   #close-btn:hover {
@@ -231,9 +229,7 @@ LIQUID
 
             <div id="popup" class="popup">
               <div class="popup-content">
-                <p class="popup-title">
-                  {{ block.settings.title | escape }}
-                  </p>
+                <a href="#" id="close-btn">Close</a>
                   <p class="h2">
                     {%- render 'styled-text', content: block.settings.title, gradient: block.settings.text_gradient -%}
                   </p>
