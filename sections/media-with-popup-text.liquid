@@ -227,17 +227,22 @@ LIQUID
             custom code start
             {% endcomment %}
 
-            <a class="button button--xl" id="popup-trigger" >Learn More</a>
-            <div id="popup" class="popup">
-              <div class="popup-content">
-                <div style="text-align: end;">
-                  <a href="#" id="close-btn">Close</a>
+            {% for block in section.blocks %}
+
+              <a class="button button--xl" id="popup-trigger">Learn More</a>
+              <div
+                id="popup"
+                id="block-{{ section.id }}-{{ block.id }}"
+                class="popup">
+                <div class="popup-content">
+                  <div style="text-align: end;">
+                    <a href="#" id="close-btn">Close</a>
+                  </div>
+
+                  {{- block.settings.content -}}
                 </div>
-
-                {{- block.settings.content -}}
               </div>
-            </div>
-
+            {% endfor %}
             {% comment %}
             cutomcode end
             {% endcomment %}
