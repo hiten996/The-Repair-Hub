@@ -245,10 +245,11 @@ LIQUID
 
 {% for block in section.blocks %}
   <div class="block">
-
+{% if block.show_button %}
 
     <button class="popup-trigger {{ block.id }}" data-popup-id="popup-{{ block.id }}">Open Popup</button>
 
+    {% endif %}
 
     <div class="popup" id="popup-{{ block.id }}">
       <div class="popup-content">
