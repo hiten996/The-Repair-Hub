@@ -198,10 +198,33 @@
             "button_background": "",
             "button_text_color": ""
           }
+        },
+        "6310d0e5-7bba-4ee8-8db4-9f2bd3ab1d78": {
+          "type": "image",
+          "settings": {
+            "media_width": 50,
+            "media_position": "start",
+            "text_position": "place-self-center text-center",
+            "icon": "none",
+            "icon_width": 48,
+            "subheading": "",
+            "title": "Heading",
+            "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.<\/p>",
+            "popupcontent": "<p>it is working<\/p>",
+            "link_text": "",
+            "link_url": "",
+            "background": "#000000",
+            "background_gradient": "",
+            "text_color": "#ffffff",
+            "text_gradient": "",
+            "button_background": "",
+            "button_text_color": ""
+          }
         }
       },
       "block_order": [
-        "template--19176972124466__38e9e4d5-447a-4bfb-9759-267dec822d97-1686722492140a4d67-0"
+        "template--19176972124466__38e9e4d5-447a-4bfb-9759-267dec822d97-1686722492140a4d67-0",
+        "6310d0e5-7bba-4ee8-8db4-9f2bd3ab1d78"
       ],
       "settings": {
         "full_width": false,
