@@ -225,18 +225,19 @@ LIQUID
 
       </div>
     {%- endfor -%}
-  </media-with-text>
-  <div id="popup" class="popup">
-    <div class="popup-content">
-      {%- if block.settings.title != blank -%}
-        <p class="h2">
-          {%- render 'styled-text', content: block.settings.title, gradient: block.settings.text_gradient -%}
-        </p>
-      {%- endif -%}
-      {{- block.settings.content -}}
-      <a href="#" id="close-btn">Close</a>
+    <div id="popup" class="popup">
+      <div class="popup-content">
+        {%- if block.settings.title != blank -%}
+          <p class="h2">
+            {%- render 'styled-text', content: block.settings.title, gradient: block.settings.text_gradient -%}
+          </p>
+        {%- endif -%}
+        {{- block.settings.content -}}
+        <a href="#" id="close-btn">Close</a>
+      </div>
     </div>
-  </div>
+  </media-with-text>
+
 </div>
 
 
