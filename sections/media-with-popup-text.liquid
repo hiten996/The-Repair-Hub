@@ -5,8 +5,35 @@
 CSS
 ------------------------------------------------------------------------------------------------------------------------
 {%- endcomment -%}{% style %}
+  .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
 
- 
+  .popup-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+  }
+
+  #close-btn {
+    display: inline-block;
+    margin-top: 10px;
+    color: #333;
+    text-decoration: none;
+  }
+
+  #close-btn:hover {
+    text-decoration: underline;
+  }
 {% endstyle %}
 
 
@@ -49,11 +76,20 @@ CSS
 </style>
 
 <script>
-  $(".Click-here").on('click', function() {
-    $(".custom-model-main").addClass('model-open');
-  });
-  $(".close-btn, .bg-overlay").click(function() {
-    $(".custom-model-main").removeClass('model-open');
+  document.addEventListener('DOMContentLoaded', function() {
+    var popup = document.getElementById('popup');
+    var popupTrigger = document.getElementById('popup-trigger');
+    var closeBtn = document.getElementById('close-btn');
+
+    popupTrigger.addEventListener('click', function(e) {
+      e.preventDefault();
+      popup.style.display = 'flex';
+    });
+
+    closeBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      popup.style.display = 'none';
+    });
   });
 </script>
 
@@ -157,7 +193,16 @@ LIQUID
             {% comment %}
             custom code start
             {% endcomment %}
-     
+            <button id="popup-trigger">Click here to open the popup</button>
+
+            <div id="popup" class="popup">
+              <div class="popup-content">
+                <h2>Welcome to our store!</h2>
+                <p>Get 10% off your first order with code "POPUP10".</p>
+                <a href="#" id="close-btn">Close</a>
+              </div>
+            </div>
+
 
             {% comment %}
             cutomcode end
