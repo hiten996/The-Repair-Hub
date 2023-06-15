@@ -191,7 +191,7 @@ LIQUID
               </p>
             {%- endif -%}
 
-            {{- block.settings.content -}}
+            {{- block.settings.popupcontent -}}
 
             {% comment %}
             custom code start
@@ -586,6 +586,11 @@ LIQUID
           }, {
             "type": "richtext",
             "id": "content",
+            "label": "Content",
+            "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+          }, {
+            "type": "richtext",
+            "id": "popupcontent",
             "label": "Content",
             "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
           }, {
