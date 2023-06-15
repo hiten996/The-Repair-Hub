@@ -111,27 +111,31 @@ CSS
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var popupTriggers = document.querySelectorAll('.popup-trigger');
-  var popups = document.querySelectorAll('.popup');
   var closeBtns = document.querySelectorAll('.close-btn');
 
   // Loop through each popup trigger and attach event listeners
-  popupTriggers.forEach(function(popupTrigger, index) {
+  popupTriggers.forEach(function(popupTrigger) {
     popupTrigger.addEventListener('click', function(e) {
       e.preventDefault();
-      popups[index].style.display = 'flex';
+      var popupId = this.getAttribute('data-popup-id');
+      var popup = document.getElementById('popup-' + popupId);
+      popup.style.display = 'flex';
       document.body.style.overflow = 'hidden'; // Disable scrolling on the page
     });
   });
 
   // Loop through each close button and attach event listeners
-  closeBtns.forEach(function(closeBtn, index) {
+  closeBtns.forEach(function(closeBtn) {
     closeBtn.addEventListener('click', function(e) {
       e.preventDefault();
-      popups[index].style.display = 'none';
+      var popupId = this.closest('.popup').id.replace('popup-', '');
+      var popup = document.getElementById('popup-' + popupId);
+      popup.style.display = 'none';
       document.body.style.overflow = 'auto'; // Enable scrolling on the page
     });
   });
 });
+
 </script>
 
 {%- comment -%}
@@ -241,7 +245,7 @@ LIQUID
     <h2>{{ block.title }}</h2>
     <p>{{ block.content }}</p>
     
-    <button class="popup-trigger">Open Popup</button>
+    <button class="popup-trigger" data-popup-id="{{ block.id }}"">Open Popup</button>
     
     <div class="popup">
       <div class="popup-content">
