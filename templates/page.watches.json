@@ -172,70 +172,11 @@
         "full_width": false,
         "spacing": "small"
       }
-    },
-    "38e9e4d5-447a-4bfb-9759-267dec822d97": {
-      "type": "media-with-popup-text",
-      "blocks": {
-        "template--19176972124466__38e9e4d5-447a-4bfb-9759-267dec822d97-1686722492140a4d67-0": {
-          "type": "image",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/Picture_1_89e2417d-258a-4d8d-b650-f0636b8a3e04.png",
-            "media_width": 50,
-            "media_position": "start",
-            "text_position": "place-self-center text-center",
-            "icon": "none",
-            "icon_width": 48,
-            "subheading": "",
-            "title": "Heading",
-            "content": "<p>Our Movement Overhaul Service entails the<br\/>following steps: <\/p><ul><li>Thorough Disassembly and Inspection: Every component of your watch and movement is carefully dismantled and inspected for any issues or wear.<\/li><li>Cleaning and Component Replacement: We clean the movement components and replace any worn or damaged parts with genuine<br\/>replacements (additional cost may apply).<\/li><li>Precise Reassembly and Calibration: The movement is reassembled with utmost precision, ensuring proper oiling of jewels and accurate calibration of the timing mechanism.<\/li><li>Case and Bracelet Polishing: Unless otherwise<br\/>instructed, we expertly polish and refinish the case and bracelet, restoring<br\/>their original luster.<\/li><li>Rigorous Quality Control and Testing: Your<br\/>watch undergoes 72 hours of rigorous testing, including timekeeping evaluation,<br\/>water resistance testing to factory specifications, and meticulous visual<br\/>inspection.<\/li><li>One-Year Warranty: Enjoy peace of mind with<br\/>our one-year warranty, ensuring the quality and reliability of our service.<\/li><\/ul>",
-            "popupcontent": "<p>Elevate your timekeeping journey today! Through meticulous disassembly, cleaning, lubrication, and reassembly, we restore its accuracy and precision. <\/p>",
-            "link_text": "Read More",
-            "link_url": "",
-            "background": "#000000",
-            "background_gradient": "",
-            "text_color": "#ffffff",
-            "text_gradient": "",
-            "button_background": "",
-            "button_text_color": ""
-          }
-        },
-        "6310d0e5-7bba-4ee8-8db4-9f2bd3ab1d78": {
-          "type": "image",
-          "settings": {
-            "media_width": 50,
-            "media_position": "start",
-            "text_position": "place-self-center text-center",
-            "icon": "none",
-            "icon_width": 48,
-            "subheading": "",
-            "title": "Heading",
-            "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.<\/p>",
-            "popupcontent": "<p>it is working<\/p>",
-            "link_text": "",
-            "link_url": "",
-            "background": "#000000",
-            "background_gradient": "",
-            "text_color": "#ffffff",
-            "text_gradient": "",
-            "button_background": "",
-            "button_text_color": ""
-          }
-        }
-      },
-      "block_order": [
-        "template--19176972124466__38e9e4d5-447a-4bfb-9759-267dec822d97-1686722492140a4d67-0",
-        "6310d0e5-7bba-4ee8-8db4-9f2bd3ab1d78"
-      ],
-      "settings": {
-        "full_width": false,
-        "spacing": "small"
-      }
     }
   },
   "order": [
     "main",
     "40bddd26-22d8-4549-bbe1-7385859f764b",
-    "78f5f6fe-eab7-4d56-8da0-585f9969206c",
-    "38e9e4d5-447a-4bfb-9759-267dec822d97"
+    "78f5f6fe-eab7-4d56-8da0-585f9969206c"
   ]
 }
