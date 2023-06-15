@@ -249,7 +249,7 @@ LIQUID
     <p>{{ block.content }}</p>
 
 
-  {% if classes contains 'block.id' %}
+  {% if classes contains block.id %}
 
     <button class="popup-trigger {{ block.id }}" data-popup-id="popup-{{ block.id }}">Open Popup</button>
     {% else %}
