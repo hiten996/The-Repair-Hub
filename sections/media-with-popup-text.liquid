@@ -247,7 +247,9 @@ LIQUID
   <div class="block">
     <h2>{{ block.title }}</h2>
     <p>{{ block.content }}</p>
-    
+{% assign myButton = '{{ block.id }}' %}  
+
+
     <button class="popup-trigger" data-popup-id="popup-{{ block.id }}">Open Popup</button>
     
     <div class="popup" id="popup-{{ block.id }}">
