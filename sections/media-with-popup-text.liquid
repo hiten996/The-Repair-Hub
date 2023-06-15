@@ -109,21 +109,25 @@ CSS
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var popup = document.getElementById('popup');
-    var popupTrigger = document.getElementById('popup-trigger');
-    var closeBtn = document.getElementById('close-btn');
+document.addEventListener('DOMContentLoaded', function() {
+  var popupSection = document.getElementById('popup-section');
+  var popupTrigger = document.getElementById('popup-trigger');
+  var closeBtn = document.getElementById('close-btn');
+  var popup = popupSection.querySelector('.popup');
 
-    popupTrigger.addEventListener('click', function(e) {
-      e.preventDefault();
-      popup.style.display = 'flex';
-    });
-
-    closeBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      popup.style.display = 'none';
-    });
+  popupTrigger.addEventListener('click', function(e) {
+    e.preventDefault();
+    popup.style.display = 'flex';
+    popupSection.style.overflow = 'hidden'; // Disable scrolling on the popup section
   });
+
+  closeBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    popup.style.display = 'none';
+    popupSection.style.overflow = 'auto'; // Enable scrolling on the popup section
+  });
+});
+
 </script>
 
 {%- comment -%}
