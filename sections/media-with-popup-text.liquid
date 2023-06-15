@@ -232,7 +232,7 @@ LIQUID
             <div id="popup" class="popup">
               <div class="popup-content">
                 <p class="popup-title">
-                  {{ block.settings.title }}
+                  {{ block.settings.title | escape }}
                   </p>
                   <p class="h2">
                     {%- render 'styled-text', content: block.settings.title, gradient: block.settings.text_gradient -%}
