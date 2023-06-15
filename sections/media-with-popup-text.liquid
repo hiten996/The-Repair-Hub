@@ -245,16 +245,11 @@ LIQUID
 
 {% for block in section.blocks %}
   <div class="block">
-    <h2>{{ block.title }}</h2>
-    <p>{{ block.content }}</p>
 
-
-  {% if classes contains block.id %}
 
     <button class="popup-trigger {{ block.id }}" data-popup-id="popup-{{ block.id }}">Open Popup</button>
-    {% else %}
-    <h1>you fucked up</h1>
-    {% endif %}
+
+
     <div class="popup" id="popup-{{ block.id }}">
       <div class="popup-content">
         <p>{{ block.settings.popupcontent }}</p>
