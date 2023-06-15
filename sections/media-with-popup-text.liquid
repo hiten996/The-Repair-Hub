@@ -11,6 +11,12 @@ CSS
     z-index: 100;
   }
 
+  .popup-title {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background: white;
+  }
 
   div#popup {
     margin-block-start: 0;
@@ -229,11 +235,12 @@ LIQUID
 
             <div id="popup" class="popup">
               <div class="popup-content">
-                <a href="#" id="close-btn">Close</a>
-                  
-                {%- endif -%}
+ <a href="#" id="close-btn">Close</a>
+                  <p class="h2">
+                    {%- render 'styled-text', content: block.settings.title, gradient: block.settings.text_gradient -%}
+                  </p>
                 {{- block.settings.content -}}
-                <a href="#" id="close-btn">Close</a>
+               
               </div>
             </div>
 
