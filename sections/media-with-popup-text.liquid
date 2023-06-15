@@ -115,11 +115,10 @@ document.addEventListener('DOMContentLoaded', function() {
   var closeBtns = document.querySelectorAll('.close-btn');
 
   // Loop through each popup trigger and attach event listeners
-  popupTriggers.forEach(function(popupTrigger) {
+  popupTriggers.forEach(function(popupTrigger, index) {
     popupTrigger.addEventListener('click', function(e) {
       e.preventDefault();
-      var popupId = this.getAttribute('data-popup-id');
-      var popup = document.getElementById(popupId);
+      var popup = this.parentNode.querySelector('.popup');
       popup.style.display = 'flex';
       document.body.style.overflow = 'hidden'; // Disable scrolling on the page
     });
@@ -135,6 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
 
 
 
@@ -246,17 +246,17 @@ LIQUID
     <h2>{{ block.title }}</h2>
     <p>{{ block.content }}</p>
     
-    <button class="popup-trigger" data-popup-id="popup-{{ block.id }}">Open Popup</button>
+    <button class="popup-trigger">Open Popup</button>
     
-    <div class="popup" id="popup-{{ block.id }}">
+    <div class="popup">
       <div class="popup-content">
-        <h3>{{ block.popup_title }}</h3>
-        <p>{{ block.settings.popupcontent }}</p>
+        <p>{{- block.settings.popupcontent -}}</p>
         <a href="#" class="close-btn">Close</a>
       </div>
     </div>
   </div>
 {% endfor %}
+
 
             {% comment %}
             cutomcode end
