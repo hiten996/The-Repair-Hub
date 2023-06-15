@@ -110,33 +110,31 @@ CSS
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  var popupTriggers = document.querySelectorAll('.popup-trigger');
-  var closeBtns = document.querySelectorAll('.close-btn');
+  document.addEventListener('DOMContentLoaded', function() {
+    var popupTriggers = document.querySelectorAll('.popup-trigger');
+    var closeBtns = document.querySelectorAll('.close-btn');
 
-  // Loop through each popup trigger and attach event listeners
-  popupTriggers.forEach(function(popupTrigger) {
-    popupTrigger.addEventListener('click', function(e) {
-      e.preventDefault();
-      var popupId = this.getAttribute('data-popup-id');
-      var popup = document.getElementById(popupId);
-      popup.style.display = 'flex';
-      document.body.style.overflow = 'hidden'; // Disable scrolling on the page
+    // Loop through each popup trigger and attach event listeners
+    popupTriggers.forEach(function(popupTrigger) {
+      popupTrigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        var blockId = this.getAttribute('id').replace('popup-btn-', '');
+        var popup = document.getElementById('popup-' + blockId);
+        popup.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Disable scrolling on the page
+      });
+    });
+
+    // Loop through each close button and attach event listeners
+    closeBtns.forEach(function(closeBtn) {
+      closeBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var popup = this.closest('.popup');
+        popup.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Enable scrolling on the page
+      });
     });
   });
-
-  // Loop through each close button and attach event listeners
-  closeBtns.forEach(function(closeBtn) {
-    closeBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      var popup = this.closest('.popup');
-      popup.style.display = 'none';
-      document.body.style.overflow = 'auto'; // Enable scrolling on the page
-    });
-  });
-});
-
-
 
 
 
@@ -245,12 +243,11 @@ LIQUID
 
 {% for block in section.blocks %}
   <div class="block">
-
-
-    <button class="popup-trigger {{ block.id }}" data-popup-id="popup-{{ block.id }}">Open Popup</button>
-
-
-
+    <h2>{{ block.title }}</h2>
+    <p>{{ block.content }}</p>
+    
+    <button class="popup-trigger" id="popup-btn-{{ block.id }}">Open Popup</button>
+    
     <div class="popup" id="popup-{{ block.id }}">
       <div class="popup-content">
         <p>{{ block.settings.popupcontent }}</p>
