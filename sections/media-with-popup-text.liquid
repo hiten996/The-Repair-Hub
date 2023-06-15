@@ -247,11 +247,11 @@ LIQUID
   <div class="block">
     <h2>{{ block.title }}</h2>
     <p>{{ block.content }}</p>
-{% assign myButton = '{{ block.id }}' %}  
 
-  {% if block.id == myButton %}
 
-    <button class="popup-trigger" data-popup-id="popup-{{ mybutton }}">Open Popup</button>
+  {% if classes contains 'block.id' %}
+
+    <button class="popup-trigger {{ block.id }}" data-popup-id="popup-{{ block.id }}">Open Popup</button>
     {% else %}
     <h1>you fucked up</h1>
     {% endif %}
