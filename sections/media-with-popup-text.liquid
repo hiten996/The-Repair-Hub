@@ -240,13 +240,13 @@ LIQUID
             {% comment %}
             custom code start
             {% endcomment %}
-
+ <button class="popup-trigger" id="popup-btn-{{ block.id }}">Open Popup</button>
 {% for block in section.blocks %}
   <div class="block">
     <h2>{{ block.title }}</h2>
     <p>{{ block.content }}</p>
     
-    <button class="popup-trigger" id="popup-btn-{{ block.id }}">Open Popup</button>
+   
     
     <div class="popup" id="popup-{{ block.id }}">
       <div class="popup-content">
