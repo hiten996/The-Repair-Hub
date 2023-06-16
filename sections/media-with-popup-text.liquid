@@ -240,7 +240,7 @@ LIQUID
             {% comment %}
             custom code start
             {% endcomment %}
- <button class="popup-trigger" id="popup-btn-{{ block.id }}">Open Popup</button>
+ 
 {%- for block in section.blocks -%}
   <div class="block">
     <h2>{{ block.title }}</h2>
@@ -256,7 +256,7 @@ LIQUID
     </div>
   </div>
 {%- endfor -%}
-
+<button class="popup-trigger" id="popup-btn-{{ block.id }}">Open Popup</button>
 
 
             {% comment %}
