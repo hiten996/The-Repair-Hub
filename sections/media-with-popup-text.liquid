@@ -47,7 +47,7 @@ CSS
     border-radius: 5px;
     text-align: center;
     color: black;
-    max-width: 80%;
+    max-width: 50%;
     max-height: 90%;
     height: 65%;
     margin-block-start: 10%;
@@ -114,7 +114,7 @@ CSS
     var popupTriggers = document.querySelectorAll('.popup-trigger');
     var closeBtns = document.querySelectorAll('.close-btn');
 
-    // Loop through each popup trigger and attach event listeners
+// Loop through each popup trigger and attach event listeners
     popupTriggers.forEach(function(popupTrigger) {
       popupTrigger.addEventListener('click', function(e) {
         e.preventDefault();
@@ -125,7 +125,7 @@ CSS
       });
     });
 
-    // Loop through each close button and attach event listeners
+// Loop through each close button and attach event listeners
     closeBtns.forEach(function(closeBtn) {
       closeBtn.addEventListener('click', function(e) {
         e.preventDefault();
@@ -135,9 +135,6 @@ CSS
       });
     });
   });
-
-
-
 </script>
 
 {%- comment -%}
@@ -240,23 +237,23 @@ LIQUID
             {% comment %}
             custom code start
             {% endcomment %}
- 
-{%- for block in section.blocks -%}
-  <div class="block">
-    <h2>{{ block.title }}</h2>
-    <p>{{ block.content }}</p>
-    
-   
-    
-    <div class="popup" id="popup-{{ block.id }}">
-      <div class="popup-content">
-        <p>{{ block.settings.popupcontent }}</p>
-        <a href="#" class="close-btn">Close</a>
-      </div>
-    </div>
-  </div>
-{%- endfor -%}
-<button class="popup-trigger button button--xl" id="popup-btn-{{ block.id }}">Open Popup</button>
+
+            {%- for block in section.blocks -%}
+              <div class="block">
+                <h2>{{ block.title }}</h2>
+                <p>{{ block.content }}</p>
+
+
+
+                <div class="popup" id="popup-{{ block.id }}">
+                  <div class="popup-content">
+                    <p>{{ block.settings.popupcontent }}</p>
+                    <a href="#" class="close-btn">Close</a>
+                  </div>
+                </div>
+              </div>
+            {%- endfor -%}
+            <button class="popup-trigger button button--xl" id="popup-btn-{{ block.id }}">Open Popup</button>
 
 
             {% comment %}
